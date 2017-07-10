@@ -1,0 +1,43 @@
+﻿@model DDAC_Assignment.Models.Yard
+@{
+    ViewBag.Title = "Edit Yard";
+}
+
+
+
+@using (Html.BeginForm("EditYard", "Home", FormMethod.Post, null))
+{
+    <div class="panel panel-primary">
+        <label class="panel-heading"><h3>Edit Yard</h3></label>
+
+        <div class="panel-body">
+            <fieldset>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.yardName)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.yardName,
+               new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.yardLocation, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.yardLocation, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.yardCountry, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.yardCountry, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </fieldset>
+            <br />
+
+            <input type="submit" value="Save Changes" class="btn btn-success">
+        </div>
+
+    </div>
+
+
+}

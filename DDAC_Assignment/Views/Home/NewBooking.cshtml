@@ -1,0 +1,51 @@
+﻿@model List<DDAC_Assignment.Models.Schedule>
+
+@{
+    ViewBag.Title = "New Booking";
+}
+
+<style>
+    table, tr, td {
+        border: solid 1px;
+    }
+</style>
+
+
+<p>
+    @using (Html.BeginForm("NewBooking", "Home", FormMethod.Post, null))
+    {
+        <div class="panel panel-info">
+            <label class="panel-heading"><h3>Booking Booking</h3></label>
+
+            <div class="panel-body">
+                <fieldset>
+                    <table style="width:100%;" class="table table-hover">
+                        <tr>
+                            <td style="background-color:black; text-align:center; color:white">Schedule Id</td>
+                            <td style="background-color:black; text-align:center; color:white">Cargo Id</td>
+                            <td style="background-color:black; text-align:center; color:white">Vessel Name</td>
+                            <td style="background-color:black; text-align:center; color:white">Yard Name</td>
+                            <td style="background-color:black; text-align:center; color:white">Departure Date</td>
+                            <td style="background-color:black; text-align:center; color:white">Arrival Date</td>
+                        </tr>
+                        @foreach (var item in Model)
+                {
+                            <tr>
+                                <td>@item.scheduleId</td>
+                                <td>@item.selectedCargoId</td>
+                                <td>@item.selectedVesselName</td>
+                                <td>@item.selectedYardName</td>
+                                <td>@item.departureDate</td>
+                                <td>@item.arrivalDate</td>
+                                <td>@Html.ActionLink("Book this", "CreateBooking", new { scheduleId = @item.scheduleId })</td>
+                            </tr>
+                        }
+                    </table>
+                </fieldset>
+
+            </div>
+
+        </div>
+
+    }
+</p>

@@ -1,0 +1,47 @@
+﻿@model List<DDAC_Assignment.Models.Yard>
+
+@{
+    ViewBag.Title = "View Yard";
+}
+
+<style>
+    table, tr, td {
+        border: solid 1px;
+    }
+</style>
+
+
+
+<p>
+    @using (Html.BeginForm("ViewYard", "Home", FormMethod.Post, null))
+    {
+        <div class="panel panel-info">
+            <label class="panel-heading"><h3>View Yard</h3></label>
+            <div>@Html.ActionLink("Create New Yard", "CreateYard", "Home")</div>
+            <div class="panel-body">
+
+                <fieldset>
+                    <table style="width:100%;" class="table table-hover">
+                        <tr>
+                            <td style="background-color:black; text-align:center; color:white">Yard Name</td>
+                            <td style="background-color:black; text-align:center; color:white">Yard Location</td>
+                            <td style="background-color:black; text-align:center; color:white">Yard Country</td>
+                        </tr>
+                        @foreach (var item in Model)
+                {
+                            <tr>
+                                <td>@item.yardName</td>
+                                <td>@item.yardLocation</td>
+                                <td>@item.yardCountry</td>
+                                <td>@Html.ActionLink("Edit", "EditYard", new { yardName = @item.yardName })</td>
+                                <td>@Html.ActionLink("Delete", "DeleteYard", new { yardName = @item.yardName })</td>
+                            </tr>
+                        }
+                    </table>
+                </fieldset>
+            </div>
+
+        </div>
+
+    }
+</p>

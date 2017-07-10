@@ -1,0 +1,135 @@
+﻿@model DDAC_Assignment.Models.Schedule
+
+@{
+    ViewBag.Title = "Create Schedule";
+}
+
+
+<div class="panel panel-title"><h2>Create New Schedule</h2></div>
+<br />
+<form method="post">
+    <p>
+        @using (Html.BeginForm("CreateSchedule", "Home", FormMethod.Post, null))
+        {
+            <fieldset>
+                <div class="panel panel-primary">
+                    <div class="panel-heading"><h3>Cargo Details</h3></div>
+                    <div class="panel-body">
+                        <div class="editor-label">
+                            <label for="scheduleId">Schedule Id</label>
+                        </div>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.scheduleId, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                        <br />
+                        <label id="Label1" Font-Size="10pt">List of Cargo :</label>
+
+                        <select id="cargoID" style="min-width: 900px" class="form-control" onclick="getCargoId()">
+                            @foreach (var item in Model.cargoList)
+                            {
+                                <option value=@item.cargoId>Cargo Id: @item.cargoId ~~~~ @item.cargoName ~ @item.cargoDeparture ~ @item.cargoArrival ~ @item.cargoVolume</option>
+                            }
+                        </select><br />
+
+                        <div class="editor-label">
+                            <label for="cargoId">Type in the Cargo Id : </label>
+                        </div>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.selectedCargoId, new { htmlAttributes = new { @class = "form-control", @id = "cargoIdTextField", @readonly = "readonly" } })
+                        </div>
+                        <br />
+                        <div class="editor-label">
+                            <label for="departureDate">Departure Date</label>
+                        </div>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.departureDate,
+                            new { htmlAttributes = new { @class = "datefield form-control", type = "date" } })
+                        </div><br />
+                        <div class="editor-label">
+                            <label for="arrivalDate">Arrival Date</label>
+                        </div>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.arrivalDate,
+                            new { htmlAttributes = new { @class = "datefield form-control", type = "date" } })
+                        </div>
+                        <br />
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="panel panel-success">
+                    <div class="panel-heading"><h3>Yard Details</h3></div>
+                    <div class="panel-body">
+                        <label id="Label6" Font-Size="10pt">List of Yard : </label>
+
+                        <select id="yardName" style="min-width: 900px" class="form-control" onclick="getYardName()">
+                            @foreach (var item in Model.yardList)
+                            {
+                                <option value=@item.yardName>Yard name: @item.yardName ~~~~ @item.yardLocation ~ @item.yardCountry</option>
+                            }
+                        </select><br />
+
+                        <div class="editor-label">
+                            <label for="yardName">Selected Yard Name : </label>
+                        </div>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.selectedYardName, new { htmlAttributes = new { @class = "form-control", @id = "yardNameTextField", @readonly = "readonly" } })
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+                
+                    <div class="panel panel-warning">
+                        <div class="panel-heading"><h3>Vessel Details</h3></div>
+                        <div class="panel-body">
+
+                            <label id="Label9" Font-Size="10pt">Select Vessel : </label>
+
+                            <select id="vesselName" style="min-width: 900px" class="form-control" onclick="getVesselName()">
+                                @foreach (var item in Model.vesselList)
+                                {
+                                    <option value=@item.vesselName>Vessel name: @item.vesselName ~~~~ @item.containers ~ @item.destinationYard ~ @item.arrivalYard</option>
+                                }
+                            </select><br />
+
+                            <div class="editor-label">
+                                <label for="vesselName">Selected Vessel Name : </label>
+                            </div>
+                            <div class="editor-field">
+                                @Html.EditorFor(model => model.selectedVesselName, new { htmlAttributes = new { @class = "form-control", @id = "vesselNameTextField", @readonly = "readonly" } })
+                            </div>
+                        </div>
+                    </div>
+
+                <br />
+                <button type="submit" id="submitBtn" class="btn btn-success">Submit</button>
+            </fieldset>
+        }
+    </p>
+</form>
+
+<script>
+    function getCargoId() {
+        var cargoId = document.getElementById('cargoID').value;
+        console.log(cargoId);
+        document.getElementById('cargoIdTextField').value = cargoId;
+    }
+
+    function getYardName() {
+        var yardName = document.getElementById('yardName').value;
+        console.log(yardName);
+        document.getElementById('yardNameTextField').value = yardName;
+    }
+
+    function getVesselName() {
+        var vesselName = document.getElementById('vesselName').value;
+        console.log(vesselName);
+        document.getElementById('vesselNameTextField').value = vesselName;
+    }
+</script>

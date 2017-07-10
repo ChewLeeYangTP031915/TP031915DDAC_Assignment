@@ -1,0 +1,51 @@
+﻿@model DDAC_Assignment.Models.Booking
+@{
+    ViewBag.Title = "Cancel My Booking";
+}
+
+
+<div class="panel panel-warning">
+    <label class="panel-heading"><h3>Cancel My Booking</h3></label>
+    <div class="panel-body">
+
+        @using (Html.BeginForm("CancelMyBooking", "Home", FormMethod.Post, null))
+        {
+            <fieldset>
+                <div class="editor-label">
+                    <label for="bookingId">Booking Id</label>
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.bookingId,
+               new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })
+                </div>
+                <div class="editor-label">
+                    <label for="scheduleId">Schedule Id</label>
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.scheduleId,
+               new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })
+                </div>
+                <div class="editor-label">
+                    <label for="bookingDate">Booking Date</label>
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.bookingDate,
+               new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })
+                </div>
+            </fieldset>
+            <br />
+            <p>Are you sure you want to cancel this booking?</p>
+            <div>
+                <input type="submit" value="Yes" class="btn btn-success ">
+            </div><br />
+        }
+       
+        <div>
+            <a class="btn btn-danger" href="/Home/CancelBooking">No</a>
+        </div>
+    </div>
+
+
+</div>
+
+
